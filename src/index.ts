@@ -19,19 +19,21 @@ export const useResponsive = <T extends { [name: string]: number }>(
 
   const [screen, setScreen] = useState(getScreen())
 
-  const onResize = () => {
-    const current = getScreen()
-    if (current.size !== screen.size || current.orientation !== screen.orientation) {
-      setScreen(current)
-    }
-  }
-
   useEffect(() => {
+    const onResize = () => {
+      const current = getScreen()
+
+      if (current.size !== screen.size || current.orientation !== screen.orientation) {
+        setScreen(current)
+      }
+    }
+
     window.addEventListener('resize', onResize)
+
     return () => {
       window.removeEventListener('resize', onResize)
     }
-  })
+  }, [])
 
   return [screen.size, screen.orientation]
 }
