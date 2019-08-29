@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react'
 
-type Orientation = 'landscape' | 'portrait'
+export type Orientation = 'landscape' | 'portrait'
 
-interface Screen<T> {
+export interface Screen<T> {
   size: keyof T
   orientation: Orientation
   screenIsAtLeast(breakpoint: keyof T, andOrientation?: Orientation): boolean
