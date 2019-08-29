@@ -2,8 +2,6 @@
 
 A react hooks approach to responsive layout.
 
-> Disclaimer: To use hooks a pre-release version of react 16.7 is required. Since the hooks API is subject to change, this library may or may not work with future versions of react.
-
 ## Install
 
 ```
@@ -27,12 +25,16 @@ import { useResponsive } from 'react-hooks-responsive'
 const breakpoints = { xs: 0, sm: 480, md: 1024 }
 
 const App: React.StatelessComponent = () => {
-  const [size, orientation] = useResponsive(breakpoints)
+  const { size, orientation, screenIsAtLeast, screenIsAtMost } = useResponsive(breakpoints)
 
   return (
-    <p>
-      The screen is currently {size} in {orientation}.
-    </p>
+    <div>
+      <p>
+        The screen is currently {size} in {orientation}.{' '}
+      </p>
+      <p>is the screen at least sm? {screenIsAtLeast('sm') ? 'yes' : 'no'}.</p>
+      <p>is the screen at most sm and portrait? {screenIsAtMost('sm', 'portrait') ? 'yes' : 'no'}.</p>
+    </div>
   )
 }
 
